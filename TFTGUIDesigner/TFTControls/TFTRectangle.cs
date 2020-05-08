@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace TFTGUIDesigner.TFTControls
 {
-    class TFTRectangle : TFTControl
+    public class TFTRectangle : TFTControl
     {
-        public TFTRectangle(int x, int y, int w, int h, TFTCanvas canvas): base(canvas)
+        public TFTRectangle(int x, int y, int w, int h, TFTCanvas canvas) : base(x, y, w, h, canvas)
         {
-            X = x;
-            Y = y;
-            Width = w;
-            Height = h;
+
         }
 
         public override void Draw()
         {
+            base.Draw();
+
             Rectangle rect = new Rectangle(X, Y, Width, Height);
             Pen pen = new Pen(BackgroundColor, BorderWith);
             graphics.DrawRectangle(pen, rect);

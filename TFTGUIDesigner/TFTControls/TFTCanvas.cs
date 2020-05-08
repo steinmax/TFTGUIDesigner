@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace TFTGUIDesigner.TFTControls
 
         public void RedrawControls()
         {
+            Canvas.CreateGraphics().Clear(Color.Black);
             foreach (TFTControl con in TFTControls)
             {
                 con.Draw();
