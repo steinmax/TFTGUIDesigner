@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFTGUIDesigner", "TFTGUIDesigner\TFTGUIDesigner.csproj", "{EBCCA7A9-72E3-4656-B2AA-B0D651310D6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBCCA7A9-72E3-4656-B2AA-B0D651310D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCCA7A9-72E3-4656-B2AA-B0D651310D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCCA7A9-72E3-4656-B2AA-B0D651310D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCCA7A9-72E3-4656-B2AA-B0D651310D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EC2B2B0-D1A0-49C2-813C-7CFE6A37DD6C}
+	EndGlobalSection
+EndGlobal
