@@ -291,8 +291,8 @@ namespace TFTGUIDesigner
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "GUI File|*.gui";
-            dialog.FileName = "TFT Gui Design";
+            dialog.Filter = "GUI File|*.tftgui";
+            dialog.FileName = "TFT-Gui Design";
             dialog.Title = "Save a Layout";
             dialog.ShowDialog();
             string filepath = dialog.FileName;
@@ -303,7 +303,7 @@ namespace TFTGUIDesigner
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "GUI File|*.gui";
+            dialog.Filter = "TFT-Gui File|*.tftgui";
             dialog.FileName = "";
             dialog.Title = "Open a Layout";
             dialog.ShowDialog();
