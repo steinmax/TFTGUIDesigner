@@ -8,8 +8,9 @@ using System.Windows.Forms;
 
 namespace TFTGUIDesigner.TFTControls
 {
-    public abstract class TFTControl
+    public abstract class TFTControl : IParseable
     {
+        public string Name { get; set; } = "TFTControl";
         public int X { get; set; } = 0;
         public int Y { get; set; } = 0;
         public int Width { get; set; } = 100;
@@ -27,14 +28,23 @@ namespace TFTGUIDesigner.TFTControls
             Pen pen = new Pen(Color.Black, BorderWith);
             graphics.FillRectangle(pen.Brush, rect);
         }
-        public TFTControl(int x, int y, int w, int h, TFTCanvas canvas)
+
+        public abstract string ConvertToString();
+
+        public abstract void ApplyFromString(string input);
+
+        public TFTControl(TFTCanvas canvas)
+        {
+            graphics = canvas.Canvas.CreateGraphics();
+            canvas.AddControl(this);
+        }
+
+        public TFTControl(int x, int y, int w, int h, TFTCanvas canvas) : this(canvas)
         {
             X = x;
             Y = y;
             Width = w;
             Height = h;
-            graphics = canvas.Canvas.CreateGraphics();
-            canvas.AddControl(this);
         }
     }
 }

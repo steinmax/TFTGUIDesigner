@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ namespace TFTGUIDesigner
     public partial class Form1 : Form
     {
         TFTCanvas TFTCan;
-        public string TFTLibName = "tft";
         public bool MouseButtonDown = false;
         TFTControl selected = null;
         TFTControl hovered = null;
@@ -51,22 +51,6 @@ namespace TFTGUIDesigner
                 pnCanvas.Width = resize.Width;
                 lbCurrentSize.Text = $"{pnCanvas.Width};{pnCanvas.Height} (W;H)";
             }
-        }
-
-        private void btnExportCode_Click(object sender, EventArgs e)
-        {
-            ExportCode();
-        }
-
-        private void ExportCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-                TFTLibName = toolStripTextBox1.Text;
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -123,6 +107,10 @@ namespace TFTGUIDesigner
                 LoadProperties(selected);
                 offset = new Point(e.X - selected.X, e.Y - selected.Y);
             }
+            else
+            {
+                dgvProperties.DataSource = null;
+            }
         }
 
         private void LoadProperties(TFTControl sel)
@@ -133,6 +121,10 @@ namespace TFTGUIDesigner
             table.Columns.Add("Value");
 
             DataRow row = table.NewRow();
+            row["Property"] = nameof(sel.Name);
+            row["Value"] = sel.Name;
+            table.Rows.Add(row);
+            row = table.NewRow();
             row["Property"] = nameof(sel.X);
             row["Value"] = sel.X;
             table.Rows.Add(row);
@@ -234,6 +226,9 @@ namespace TFTGUIDesigner
             {
                 switch (name)
                 {
+                    case "Name":
+                        con.Name = value;
+                        break;
                     case "X":
                         if (int.TryParse(value, out int x))
                             con.X = x;
@@ -291,6 +286,29 @@ namespace TFTGUIDesigner
                 TFTCan.RemoveControl(selected);
                 dgvProperties.DataSource = null;
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "GUI File|*.gui";
+            dialog.FileName = "TFT Gui Design";
+            dialog.Title = "Save a Layout";
+            dialog.ShowDialog();
+            string filepath = dialog.FileName;
+            string content = TFTCan.GetStringLayout();
+            File.WriteAllText(filepath, content);
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "GUI File|*.gui";
+            dialog.FileName = "";
+            dialog.Title = "Open a Layout";
+            dialog.ShowDialog();
+            string filepath = dialog.FileName;
+            TFTCan.ApplyFromFile(filepath, pnCanvas);
         }
     }
 }

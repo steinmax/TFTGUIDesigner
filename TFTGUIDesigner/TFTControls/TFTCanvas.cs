@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace TFTGUIDesigner.TFTControls
         public TFTCanvas(Panel canvas)
         {
             Canvas = canvas;
+            Height = canvas.Height;
+            Width = canvas.Width;
         }
 
         public void AddControl(TFTControl con)
@@ -46,6 +49,56 @@ namespace TFTGUIDesigner.TFTControls
             foreach (TFTControl con in TFTControls)
             {
                 con.Draw();
+            }
+        }
+
+        public string GetStringLayout()
+        {
+            string result = $"{Height};{Width}";
+
+            foreach (TFTControl control in TFTControls)
+            {
+                result += "~" + control.ConvertToString();
+            }
+
+            return result;
+        }
+
+        public void ApplyFromFile(string path, Panel canvas)
+        {
+            TFTControls.Clear();
+            canvas.CreateGraphics().Clear(Color.Black);
+            if (File.Exists(path))
+            {
+                Canvas = canvas;
+                string raw = File.ReadAllText(path);
+                string[] snippes = raw.Split('~');
+                Height = Convert.ToInt32(snippes[0].Split(';')[0]);
+                Width = Convert.ToInt32(snippes[0].Split(';')[1]);
+
+                for (int i = 1; i < snippes.Length; i++)
+                {
+                    if (snippes[i].StartsWith("rectangle"))
+                    {
+                        TFTRectangle rect = new TFTRectangle(this);
+                        rect.ApplyFromString(snippes[i]);
+                    }
+                    else if (snippes[i].StartsWith("label"))
+                    {
+                        TFTLabel lbn = new TFTLabel(this);
+                        lbn.ApplyFromString(snippes[i]);
+                    }
+                    else if(snippes[i].StartsWith("button"))
+                    {
+                        TFTButton btn = new TFTButton(this);
+                        btn.ApplyFromString(snippes[i]);
+                    }
+                }
+                RedrawControls();
+            }
+            else
+            {
+                throw new Exception("File not found");
             }
         }
     }

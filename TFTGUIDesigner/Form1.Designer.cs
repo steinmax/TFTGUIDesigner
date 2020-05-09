@@ -35,9 +35,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExportCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSetTFTLibname = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.canvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSetCanvasSize = new System.Windows.Forms.ToolStripMenuItem();
             this.lbCurrentSize = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,9 +86,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnOpen,
-            this.btnSave,
-            this.btnExportCode,
-            this.btnSetTFTLibname});
+            this.btnSave});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -99,36 +94,16 @@
             // btnOpen
             // 
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(161, 22);
+            this.btnOpen.Size = new System.Drawing.Size(103, 22);
             this.btnOpen.Text = "Open";
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnSave
             // 
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(161, 22);
+            this.btnSave.Size = new System.Drawing.Size(103, 22);
             this.btnSave.Text = "Save";
-            // 
-            // btnExportCode
-            // 
-            this.btnExportCode.Name = "btnExportCode";
-            this.btnExportCode.Size = new System.Drawing.Size(161, 22);
-            this.btnExportCode.Text = "Export Code";
-            this.btnExportCode.Click += new System.EventHandler(this.btnExportCode_Click);
-            // 
-            // btnSetTFTLibname
-            // 
-            this.btnSetTFTLibname.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1});
-            this.btnSetTFTLibname.Name = "btnSetTFTLibname";
-            this.btnSetTFTLibname.Size = new System.Drawing.Size(161, 22);
-            this.btnSetTFTLibname.Text = "Set object Name";
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // canvasToolStripMenuItem
             // 
@@ -142,14 +117,14 @@
             // btnSetCanvasSize
             // 
             this.btnSetCanvasSize.Name = "btnSetCanvasSize";
-            this.btnSetCanvasSize.Size = new System.Drawing.Size(180, 22);
+            this.btnSetCanvasSize.Size = new System.Drawing.Size(150, 22);
             this.btnSetCanvasSize.Text = "Set Size";
             this.btnSetCanvasSize.Click += new System.EventHandler(this.btnSetCanvasSize_Click);
             // 
             // lbCurrentSize
             // 
             this.lbCurrentSize.Name = "lbCurrentSize";
-            this.lbCurrentSize.Size = new System.Drawing.Size(180, 22);
+            this.lbCurrentSize.Size = new System.Drawing.Size(150, 22);
             this.lbCurrentSize.Text = "<current size>";
             // 
             // designerToolStripMenuItem
@@ -221,6 +196,7 @@
             // 
             // btnDeleteControl
             // 
+            this.btnDeleteControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteControl.Location = new System.Drawing.Point(731, 579);
             this.btnDeleteControl.Name = "btnDeleteControl";
             this.btnDeleteControl.Size = new System.Drawing.Size(75, 23);
@@ -261,8 +237,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnOpen;
         private System.Windows.Forms.ToolStripMenuItem btnSave;
-        private System.Windows.Forms.ToolStripMenuItem btnExportCode;
-        private System.Windows.Forms.ToolStripMenuItem btnSetTFTLibname;
         private System.Windows.Forms.ToolStripMenuItem designerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem canvasToolStripMenuItem;
@@ -272,7 +246,6 @@
         private System.Windows.Forms.DataGridView dgvProperties;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnCanvas;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.Button btnDeleteControl;
     }
 }
